@@ -3,6 +3,8 @@ package _04_Base64_Decoder;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
+import _00_Binary_Conversion.DecimalToBinary;
+
 public class Base64Decoder {
 	/*
 	 * Base 64 is a way of encoding binary data using text.
@@ -37,14 +39,24 @@ public class Base64Decoder {
 	//1. Complete this method so that it returns the the element in
 	//   the base64Chars array that corresponds to the passed in char.
 	public static byte convertBase64Char(char c){
-		return 0;
+		for(int i = 0; i < base64Chars.length; i++) {
+			if(c == base64Chars[i]) {
+				return (byte) i;
+			}
+		}
+		return -1;
 	}
 	
 	//2. Complete this method so that it will take in a string that is 4 
 	//   characters long and return an array of 3 bytes (24 bits). The byte 
 	//   array should be the binary value of the encoded characters.
 	public static byte[] convert4CharsTo24Bits(String s){
-		return null;
+		byte[] b = new byte[3];
+		for(int i = 0; i < s.length() - 1; i++) {
+			b[i] = (byte) Integer.parseInt(Integer.toBinaryString((int)convertBase64Char(s.charAt(i))));
+			System.out.println(b[i]);
+		}
+		return b;
 	}
 	
 	//3. Complete this method so that it takes in a string of any length
